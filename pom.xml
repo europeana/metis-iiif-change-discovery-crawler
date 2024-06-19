@@ -13,7 +13,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.maven.compiler.plugin>3.11.0</version.maven.compiler.plugin>
     <version.maven.release.plugin>2.5.3</version.maven.release.plugin>
-    <version.metis>12-SNAPSHOT</version.metis>
+    <version.metis>13-SNAPSHOT</version.metis>
   </properties>
 
   <build>
