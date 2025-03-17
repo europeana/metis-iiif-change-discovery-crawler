@@ -13,16 +13,12 @@ import java.nio.file.Path;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 public class UsageExample {
 
   public static void main(String[] args) throws IOException, HarvesterException {
 
-    final String streamUri = "https://iiif-staging.aipberoun.cz/apis/iiif-api/discovery/ordered-collection";
+    final String streamUri = "https://imagines.supcik.online/apis/iiif-change-discovery-api/discovery/ordered-collection";
     final Path downloadFile = Files.createTempFile("edm-dump-download", ".zip");
     final AtomicInteger counter = new AtomicInteger(0);
     try (final ZipOutputStream zos = new ZipOutputStream(Files.newOutputStream(downloadFile));
@@ -31,11 +27,8 @@ public class UsageExample {
       System.out.println("Harvesting " + harvestingIterator.countRecords() + " records.");
       harvestingIterator.forEachNonDeleted(record -> {
         try {
-
-          // THE ENDPOINT ENFORCES A 2 SECOND INTERVAL BETWEEN TWO SUCCESSIVE REQUESTS.
           System.out.println(counter.incrementAndGet() + ": " + record.getHarvestingIdentifier());
-          Thread.sleep(2500);
-
+          Thread.sleep(10); // At some point the server imposed a 2 second interval between requests.
           final String fileName = URLEncoder.encode(record.getHarvestingIdentifier(), StandardCharsets.UTF_8);
           zos.putNextEntry(new ZipEntry(fileName + ".rdf"));
           record.writeContent(zos);

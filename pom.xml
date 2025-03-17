@@ -13,8 +13,33 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.maven.compiler.plugin>3.11.0</version.maven.compiler.plugin>
     <version.maven.release.plugin>2.5.3</version.maven.release.plugin>
-    <version.metis>13-SNAPSHOT</version.metis>
+    <version.metis>14</version.metis>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>libs-release</id>
+      <name>libs-release</name>
+      <url>https://artifactory.eanadev.org/artifactory/libs-release</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>libs-snapshot</id>
+      <name>libs-snapshot</name>
+      <url>https://artifactory.eanadev.org/artifactory/libs-snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <build>
     <plugins>
